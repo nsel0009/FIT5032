@@ -1,0 +1,25 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="QQ9doAaVjPPqVFC0kYJV">
+    <mxGraphModel dx="1814" dy="1229" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="kHkdpmYUpYdyZ-QpdlWc-5" edge="1" parent="1" source="kHkdpmYUpYdyZ-QpdlWc-1" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;endArrow=none;endFill=0;" target="kHkdpmYUpYdyZ-QpdlWc-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kHkdpmYUpYdyZ-QpdlWc-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Home Page" vertex="1">
+          <mxGeometry height="60" width="120" x="144" y="-377" as="geometry" />
+        </mxCell>
+        <mxCell id="kHkdpmYUpYdyZ-QpdlWc-3" edge="1" parent="1" source="kHkdpmYUpYdyZ-QpdlWc-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;fontSize=12;startSize=8;endSize=8;endArrow=none;endFill=0;curved=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="kHkdpmYUpYdyZ-QpdlWc-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="kHkdpmYUpYdyZ-QpdlWc-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Authentication" vertex="1">
+          <mxGeometry height="60" width="120" x="-82" y="-224" as="geometry" />
+        </mxCell>
+        <mxCell id="kHkdpmYUpYdyZ-QpdlWc-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Bookings" vertex="1">
+          <mxGeometry height="60" width="120" x="144" y="-224" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
