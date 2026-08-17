@@ -8,12 +8,20 @@
           <form @submit.prevent="submitForm">
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="username" class="form-lbbel">Username</label>
-                <input type="text" class="form-control" id="username" required v-model="formData.username">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username"
+                @blur="() => validateName(true)"
+                @input="() => validateName(false)"
+                v-model="formData.username" />
+                <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
               </div>
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" required minlength="4" maxlength="10" v-model="formData.password">
+                <input type="password" class="form-control" id="password"
+                @blur="() => validatePassword(true)"
+                @input="() => validatePassword(false)"
+                v-model="formData.password">
+                <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
               </div>
             </div>
             <div class="row mb-3">
@@ -25,7 +33,7 @@
               </div>
               <div class="col-md-6">
                 <label for="gender" class="form-label">Gender</label>
-                <select class="form-select" id="gender" required type='String' v-model="formData.gender">
+                <select class="form-select" id="gender" v-model="formData.gender">
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                   <option value="other">Other</option>
@@ -34,7 +42,7 @@
             </div>
             <div class="mb-3">
               <label for="reason" class="form-label">Reason for joining</label>
-              <textarea class="form-control" id="reason" required minlength="10" maxlength="256" rows="3" v-model="formData.reason"></textarea>
+              <textarea class="form-control" id="reason" rows="3" v-model="formData.reason"></textarea>
             </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary me-2">Submit</button>
@@ -104,9 +112,12 @@ const formData = ref({
 const submittedCards = ref([]);
 
 const submitForm = () => {
-    submittedCards.value.push({
-        ...formData.value
-    });
+  validateName(true);
+  validatePassword(true);
+  if (!errors.value.username && !errors.value.password) {
+    submittedCards.value.push({...formData.value});
+    clearForm();
+  }
 };
 
 const clearForm = () => {
@@ -118,6 +129,46 @@ const clearForm = () => {
         gender: ''
     };
 };
+
+const errors = ref({
+  username: null,
+  password: null,
+  resident: null,
+  gender: null,
+  reason: null,
+})
+
+const validateName = (blur) => {
+  if (formData.value.username.length < 3) {
+    if (blur) errors.value.username = "Name must be at least 3 characters"
+  } else {
+    errors.value.username = null;
+  }
+}
+
+const validatePassword = (blur) => {
+
+  const password = formData.value.password;
+  const minLength = 8;
+  const hasUppercase = /[A-Z]/.test(password);
+  const hasLowercase = /[a-z]/.test(password);
+  const hasNumber = /\d/.test(password);
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+  if (formData.value.password.length < minLength) {
+    if (blur) errors.value.password = `Password must be at least ${minLength} characters long.`;
+  } else if (!hasUppercase) {
+    if (blur) errors.value.password = "Password must contain at least one uppercase letter.";
+  } else if (!hasLowercase) {
+    if (blur) errors.value.password = "Password must contain at least one lowercase letter.";
+  } else if (!hasNumber) {
+    if (blur) errors.value.password = "Password must contain at least one number.";
+  } else if (!hasSpecialChar) {
+    if (blur) errors.value.password = "Password must contain at least one special character.";
+  } else {
+    errors.value.password = null;
+  }
+}
 
 </script>
 
