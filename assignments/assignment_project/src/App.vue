@@ -1,5 +1,6 @@
 <script setup>
 import HelloWorld from './components/HelloWorld.vue'
+import RegistrationForm from './components/RegistrationForm.vue';
 import TheWelcome from './components/TheWelcome.vue'
 </script>
 
@@ -11,6 +12,10 @@ import TheWelcome from './components/TheWelcome.vue'
       <HelloWorld msg="You did it!" />
     </div>
   </header>
+
+  <main>
+    <RegistrationForm />
+  </main>
 
   <main>
     <TheWelcome />
