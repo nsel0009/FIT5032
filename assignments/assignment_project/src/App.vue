@@ -4,7 +4,9 @@ import JSON from './components/JSON.vue';
 </script>
 
 <template>
-  <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <div class="logo-image">
+    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  </div>
   <br />
   <div class="wrapper">
     <header>
@@ -14,9 +16,10 @@ import JSON from './components/JSON.vue';
 
   <br />
   <div class="wrapper">
-    <section class="lab-section">
+    <section class="container-section">
       <h2>Registration Form</h2>
       <p>Fill out the form below to register a new user.</p>
+      <br />
       <main>
         <RegistrationForm />
       </main>
@@ -25,7 +28,11 @@ import JSON from './components/JSON.vue';
 
   <br />
   <div class="wrapper">
-    <section class="lab-section">
+    <section class="container-section">
+      <br />
+      <h2>Tables and Cards For Users and Sessions</h2>
+      <p>The following shows the information for both users and sessions. These are shown both in card format and table format.</p>
+      <br />
       <main>
         <JSON />
       </main>
@@ -54,10 +61,25 @@ header {
     margin: 0 2rem 0 0;
   }
 
-  header .wrapper {
+  .wrapper {
     display: flex;
     place-items: flex-start;
     flex-wrap: wrap;
   }
+
+  header {
+    margin: 0;
+    text-align: center;
+  }
+
+  .logo-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .container-section {
+    width: 100%;
+  }
+
 }
 </style>

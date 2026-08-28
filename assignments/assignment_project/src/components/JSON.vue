@@ -1,9 +1,9 @@
-<!-- JSONLab.vue -->
+<!-- JSON.vue -->
 
 <template>
-  <div class="json-lab">
+  <div class="container-block">
     <h2>List of All Users</h2>
-    <section class="lab-section">
+    <section class="container-section">
       <ul>
         <li v-for="user in users" :key="user.id">
           {{ user.firstname }} {{ user.lastname }} ({{ user.username }}) - {{ user.email }}
@@ -11,7 +11,7 @@
       </ul>
     </section>
 
-    <section class="lab-section">
+    <section class="container-section">
       <div class="w-full">
         <DataTable :value="usersTableData" tableStyle="min-width: 50rem">
           <Column class="column-text" field="firstname" header ="First Name" />
@@ -24,9 +24,9 @@
 
   </div>
 
-  <div class="json-lab">
+  <div class="container-block">
     <h2>List of All Sessions</h2>
-    <section class="lab-section">
+    <section class="container-section">
       <ul>
         <li v-for="session in sessions" :key="session.id">
           {{ session.topic }} ({{ session.date }}) - {{ session.teacher }}
@@ -38,7 +38,7 @@
       </ul>
     </section>
 
-    <section class="lab-section">
+    <section class="container-section">
       <div class="w-full">
         <DataTable :value="sessionsTableData" tableStyle="min-width: 50rem">
           <Column class="column-text" field="date" header ="Date" />
@@ -70,7 +70,7 @@ const sessionsTableData = ref(sessions);
 </script>
 
 <style scoped>
-.json-lab {
+.container-block {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   max-width: 80vw;
   margin: 0 auto;
@@ -88,7 +88,7 @@ h1 {
   text-align: center;
 }
 
-.lab-section {
+.container-section {
   background-color: white;
   padding: 20px;
   margin-bottom: 20px;
