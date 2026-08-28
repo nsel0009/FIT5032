@@ -6,18 +6,41 @@
       <h3>All Users</h3>
       <ul>
         <li v-for="user in users" :key="user.id">
-          {{ user.firstname }} ({{ user.lastname }}) - {{ user.gender }}
+          {{ user.firstname }} {{ user.lastname }} ({{ user.username }}) - {{ user.email }}
         </li>
       </ul>
     </section>
+
+    <section class="lab-section">
+      <div class="w-full">
+        <DataTable :value="usersTableData" tableStyle="min-width: 50rem">
+          <Column field="firstname" header ="First Name" />
+          <Column field="lastname" header ="Last Name" />
+          <Column field="username" header ="Username" />
+          <Column field="email" header ="Email" />
+          <Column field="gender" header ="Gender" />
+          <Column field="status" header ="Status" />
+          <Column field="reason" header ="Reason" />
+        </DataTable>
+      </div>
+    </section>
+
   </div>
+
 </template>
 
 <script setup>
- import users from "../assets/json/users.json"
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+
+import users from "../assets/json/users.json"
+import sessions from "../assets/json/sessions.json"
+
 import { ref, computed } from "vue"
 
 const showMessage = ref(false)
+
+const usersTableData = ref(users);
 
 </script>
 
