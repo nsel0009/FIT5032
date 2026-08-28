@@ -1,13 +1,37 @@
 <script setup>
 import RegistrationForm from './components/RegistrationForm.vue';
+import JSON from './components/JSON.vue';
 </script>
 
 <template>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <br />
+  <div class="wrapper">
+    <header>
+      <h1>FIT5032 - NFP Environmental Education and Climate Literacy</h1>
+    </header>
+  </div>
 
-  <main>
-    <RegistrationForm />
-  </main>
+  <br />
+  <div class="wrapper">
+    <section class="lab-section">
+      <h2>Registration Form</h2>
+      <p>Fill out the form below to register a new user.</p>
+      <main>
+        <RegistrationForm />
+      </main>
+    </section>
+  </div>
+
+  <br />
+  <div class="wrapper">
+    <section class="lab-section">
+      <h2>List of All Users</h2>
+      <main>
+        <JSON />
+      </main>
+    </section>
+  </div>
 </template>
 
 <style scoped>

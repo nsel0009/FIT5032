@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "firstname": "John",
+    "lastname": "Doe",
+    "username": "JohnDoe123",
+    "email": "john.doe@gmail.com",
+    "gender": "male",
+    "status": "active",
+    "reason": "I want to learn more about climate literacy"
+  },
+  {
+    "id": 2,
+    "firstname": "Jane",
+    "lastname": "Doe",
+    "username": "JaneDoe456",
+    "email": "jane.doe@gmail.com",
+    "gender": "female",
+    "status": "active",
+    "reason": "I want to use the map feature that this business provides"
+  },
+  {
+    "id": 3,
+    "firstname": "Bob",
+    "lastname": "Jones",
+    "username": "JonesOfArcs",
+    "email": "bob.jones@gmail.com",
+    "gender": "other",
+    "status": "disabled",
+    "reason": "I want to learn more about how I can help out my community and its environmental needs"
+  }
+]

@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "date": "2026-09-15",
+    "topic": "Sustainable Agriculture",
+    "description": "An in-depth look at sustainable farming practices and their impact on the environment.",
+    "teacher": "Mason Green",
+    "number_of_people_enrolled": 2,
+    "people_enrolled": [1, 2]
+  },
+  {
+    "id": 2,
+    "date": "2026-09-16",
+    "topic": "Architecture and Design - Environmental Concerns",
+    "description": "Exploring the intersection of architecture and design with environmental sustainability.",
+    "teacher": "Maya Patel",
+    "number_of_people_enrolled": 1,
+    "people_enrolled": [3]
+  },
+  {
+    "id": 3,
+    "date": "2026-09-17",
+    "topic": "Risk Identification and Management",
+    "description": "Understanding how to identify and manage risks in environmental projects in your community.",
+    "teacher": "Yuna Kim",
+    "number_of_people_enrolled": 3,
+    "people_enrolled": [1, 2, 3]
+  }
+]
