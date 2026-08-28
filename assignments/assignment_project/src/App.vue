@@ -26,7 +26,6 @@ import JSON from './components/JSON.vue';
   <br />
   <div class="wrapper">
     <section class="lab-section">
-      <h2>List of All Users</h2>
       <main>
         <JSON />
       </main>
