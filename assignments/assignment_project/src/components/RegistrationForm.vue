@@ -8,12 +8,36 @@
           <form @submit.prevent="submitForm">
             <div class="row mb-3">
               <div class="col-md-6">
+                <label for="firstname" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstname"
+                @blur="() => validateFirstname(true)"
+                @input="() => validateFirstname(false)"
+                v-model="formData.firstname" />
+              </div>
+              <div class="col-md-6">
+                <label for="lastname" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastname"
+                @blur="() => validateLastname(true)"
+                @input="() => validateLastname(false)"
+                v-model="formData.lastname" />
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username"
-                @blur="() => validateName(true)"
-                @input="() => validateName(false)"
+                @blur="() => validateUsername(true)"
+                @input="() => validateUsername(false)"
                 v-model="formData.username" />
                 <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email"
+                @blur="() => validateEmail(true)"
+                @input="() => validateEmail(false)"
+                v-model="formData.email" />
+                <div v-if="errors.email" class="text-danger">{{ errors.email }}</div>
               </div>
               <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
@@ -37,6 +61,17 @@
                 </select>
                 <div v-if="errors.gender" class="text-danger">{{ errors.gender }}</div>
               </div>
+              <div class="col-md-6">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status"
+                @blur="() => validateStatus(true)"
+                @input="() => validateStatus(false)"
+                v-model="formData.status">
+                  <option value="active">Active</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+                <div v-if="errors.status" class="text-danger">{{ errors.status }}</div>
+              </div>
             </div>
             <div class="mb-3">
               <label for="reason" class="form-label">Reason for joining</label>
@@ -59,9 +94,13 @@
 
     <div class="w-full">
       <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
-        <Column field="username" header ="UserName" />
+        <Column field="firstname" header ="First Name" />
+        <Column field="lastname" header ="Last Name" />
+        <Column field="username" header ="Username" />
+        <Column field="email" header ="Email" />
         <Column field="password" header ="Password" />
         <Column field="gender" header ="Gender" />
+        <Column field="status" header ="Status" />
         <Column field="reason" header ="Reason" />
       </DataTable>
     </div>
@@ -76,8 +115,12 @@ import Column from 'primevue/column';
 import { ref } from 'vue';
 
 const formData = ref({
+    firstname: '',
+    lastname: '',
     username: '',
+    email: '',
     password: '',
+    status: '',
     reason: '',
     gender: ''
 });
@@ -85,11 +128,15 @@ const formData = ref({
 const submittedCards = ref([]);
 
 const submitForm = () => {
-  validateName(true);
+  validateFirstname(true);
+  validateLastname(true);
+  validateUsername(true);
+  validateEmail(true);
   validatePassword(true);
   validateGender(true);
+  validateStatus(true);
   validateReason(true);
-  if (!errors.value.username && !errors.value.password && !errors.value.gender && !errors.value.reason) {
+  if (!errors.value.firstname && !errors.value.lastname && !errors.value.username && !errors.value.password && !errors.value.gender && !errors.value.status && !errors.value.reason) {
     submittedCards.value.push({...formData.value});
     clearForm();
   }
@@ -112,7 +159,7 @@ const errors = ref({
   reason: null,
 })
 
-const validateName = (blur) => {
+const validateFirstname = (blur) => {
   const nameMaxLimit = 20;
   const nameMinLimit = 3;
 
@@ -122,6 +169,45 @@ const validateName = (blur) => {
     if (blur) errors.value.username = `Username must be at least ${nameMinLimit} characters long.`;
   } else {
     errors.value.username = null;
+  }
+}
+
+const validateLastname = (blur) => {
+  const nameMaxLimit = 20;
+  const nameMinLimit = 3;
+
+  if (formData.value.username.length > nameMaxLimit) {
+    if (blur) errors.value.username = `Username must be no more than ${nameMaxLimit} characters long.`;
+  } else if (formData.value.username.length < nameMinLimit) {
+    if (blur) errors.value.username = `Username must be at least ${nameMinLimit} characters long.`;
+  } else {
+    errors.value.username = null;
+  }
+}
+
+const validateUsername = (blur) => {
+  const nameMaxLimit = 20;
+  const nameMinLimit = 3;
+
+  if (formData.value.username.length > nameMaxLimit) {
+    if (blur) errors.value.username = `Username must be no more than ${nameMaxLimit} characters long.`;
+  } else if (formData.value.username.length < nameMinLimit) {
+    if (blur) errors.value.username = `Username must be at least ${nameMinLimit} characters long.`;
+  } else {
+    errors.value.username = null;
+  }
+}
+
+const validateEmail = (blur) => {
+  const nameMaxLimit = 20;
+  const nameMinLimit = 3;
+
+  if (formData.value.email.length > nameMaxLimit) {
+    if (blur) errors.value.email = `Email must be no more than ${nameMaxLimit} characters long.`;
+  } else if (formData.value.email.length < nameMinLimit) {
+    if (blur) errors.value.email = `Email must be at least ${nameMinLimit} characters long.`;
+  } else {
+    errors.value.email = null;
   }
 }
 
@@ -155,6 +241,14 @@ const validateGender = (blur) => {
     if (blur) errors.value.gender = "Gender must be selected from the options above"
   } else {
     errors.value.gender = null;
+  }
+}
+
+const validateStatus = (blur) => {
+  if (!formData.value.status) {
+    if (blur) errors.value.status = "Status must be selected from the options above"
+  } else {
+    errors.value.status = null;
   }
 }
 
