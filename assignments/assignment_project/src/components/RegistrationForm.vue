@@ -369,7 +369,7 @@ const validateReason = (blur) => {
   }
 
   .custom-btn-primary {
-    background-color: #5dfff2; /* Vue Green */
+    background-color: #5dfff2;
     color: black;
     padding: 10px 20px;
     border: none;
@@ -383,7 +383,7 @@ const validateReason = (blur) => {
   }
 
     .custom-btn-secondary {
-    background-color: #acacac; /* Vue Green */
+    background-color: #acacac;
     color: black;
     padding: 10px 20px;
     border: none;
