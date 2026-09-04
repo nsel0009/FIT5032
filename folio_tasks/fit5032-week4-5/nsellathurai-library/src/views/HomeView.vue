@@ -70,7 +70,7 @@
               }">{{ errors.reason }}</div>
             </div>
             <div class="mb-3">
-              <label for="reason" class="form-label">Suburb</label>
+              <label for="suburb" class="form-label">Suburb</label>
               <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
             </div>
             <div class="text-center">
@@ -84,23 +84,6 @@
 
     </div>
 
-    <!-- <div class="row mt-5" v-if="submittedCards.length">
-      <div class="d-flex flex-wrap justify-content-start">
-          <div v-for="(card, index) in submittedCards" :key="index" class="card m-2" style="width: 18rem;">
-            <div class="card-header">
-                User Information
-            </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">Username: {{ card.username }}</li>
-                <li class="list-group-item">Password: {{ card.password }}</li>
-                <li class="list-group-item">Australian Resident: {{ card.isAustralian ? 'Yes' : 'No' }}</li>
-                <li class="list-group-item">Gender: {{ card.gender }}</li>
-                <li class="list-group-item">Reason: {{ card.reason }}</li>
-            </ul>
-          </div>
-      </div>
-    </div> -->
-
     <div class="w-full">
       <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
         <Column field="username" header ="UserName" />
@@ -108,33 +91,10 @@
         <Column field="isAustralian" header ="AustralianResident" />
         <Column field="gender" header ="Gender" />
         <Column field="reason" header ="Reason" />
+        <Column field="suburb" header ="Suburb" />
       </DataTable>
     </div>
 
-    <!-- <div>
-        <h1>User Information Form / Credentials</h1>
-
-        <form class='form'>
-          <label for="username">Username:</label><br>
-          <input type="text" id="username" name="username"><br>
-
-          <label for="password">Password:</label><br>
-          <input type="password" id="password" name="password"><br>
-
-          <label for="isAustralian">Australian Resident?</label><br>
-          <input type="checkbox" id="isAustralian" name="isAustralian"><br>
-
-          <label for="reason">Reason For Joining:</label><br>
-          <textarea id="reason" name="reason" rows="3"></textarea><br>
-
-          <label for="gender">Gender</label><br>
-          <select id="gender">
-              <option value="female">Female</option>
-              <option value="male">Male</option>
-              <option value="other">Other</option>
-          </select>
-        </form>
-    </div> -->
 </template>
 
 <script setup>
@@ -148,9 +108,10 @@ const formData = ref({
     username: null,
     password: null,
     confirmPassword: null,
+    isAustralian: false,
     reason: null,
     gender: null,
-    sububr: 'Clayton'
+    suburb: 'Clayton'
 });
 
 const submittedCards = ref([]);
@@ -161,7 +122,7 @@ const submitForm = () => {
   validateConfirmPassword(true);
   validateGender(true);
   validateReason(true);
-  if (!errors.value.username && !errors.value.password && !errors.value.gender && !errors.value.reason) {
+  if (!errors.value.username && !errors.value.password && !errors.value.gender && (!errors.value.reason || errors.value.reason === 'Great to have a Friend')) {
     submittedCards.value.push({...formData.value});
     clearForm();
   }
@@ -183,6 +144,7 @@ const errors = ref({
   resident: null,
   gender: null,
   reason: null,
+  suburb: null
 })
 
 const validateName = (blur) => {
@@ -241,7 +203,7 @@ const validateReason = (blur) => {
   }
   // Checking if friend is in the reasons
   else if (formData.value.reason.includes('friend')) {
-    errors.value.reason = "Great to have a Friend"
+    if (blur) errors.value.reason = "Great to have a Friend"
   } else {
     errors.value.reason = null;
   }
