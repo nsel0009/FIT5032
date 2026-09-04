@@ -16,22 +16,6 @@
                 <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
               </div>
               <div class="col-md-6">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password"
-                @blur="() => validatePassword(true)"
-                @input="() => validatePassword(false)"
-                v-model="formData.password">
-                <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-md-6">
-                <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
-                <label class="form-check-label" for="isAustralian">Australian Resident?</label>
-                </div>
-              </div>
-              <div class="col-md-6">
                 <label for="gender" class="form-label">Gender</label>
                 <select class="form-select" id="gender"
                 @blur="() => validateReason(true)"
@@ -42,6 +26,36 @@
                   <option value="other">Other</option>
                 </select>
                 <div v-if="errors.gender" class="text-danger">{{ errors.gender }}</div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password"
+                @blur="() => validatePassword(true)"
+                @input="() => validatePassword(false)"
+                v-model="formData.password">
+                <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
+              </div>
+              <div class="col-md-6 col-sm-6">
+                <label for="confirm-password" class="form-label">Confirm password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirm-password"
+                  @blur="() => validateConfirmPassword(true)"
+                  @input="() => validateConfirmPassword(false)"
+                  v-model="formData.confirmPassword"
+                />
+                <div v-if="errors.confirmPassword" class="text-danger">{{ errors.confirmPassword }}</div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <div class="col-md-6">
+                <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="isAustralian" v-model="formData.isAustralian">
+                <label class="form-check-label" for="isAustralian">Australian Resident?</label>
+                </div>
               </div>
             </div>
             <div class="mb-3">
@@ -124,11 +138,11 @@ import Column from 'primevue/column';
 import { ref } from 'vue';
 
 const formData = ref({
-    username: '',
-    password: '',
-    isAustralian: false,
-    reason: '',
-    gender: ''
+    username: null,
+    password: null,
+    confirmPassword: null,
+    reason: null,
+    gender: null
 });
 
 const submittedCards = ref([]);
@@ -136,6 +150,7 @@ const submittedCards = ref([]);
 const submitForm = () => {
   validateName(true);
   validatePassword(true);
+  validateConfirmPassword(true);
   validateGender(true);
   validateReason(true);
   if (!errors.value.username && !errors.value.password && !errors.value.gender && !errors.value.reason) {
@@ -194,6 +209,14 @@ const validatePassword = (blur) => {
   }
 }
 
+const validateConfirmPassword = (blur) => {
+  if (formData.value.password !== formData.value.confirmPassword) {
+    if (blur) errors.value.confirmPassword = 'Passwords do not match.'
+  } else {
+    errors.value.confirmPassword = null
+  }
+}
+
 const validateGender = (blur) => {
   if (!formData.value.gender) {
     if (blur) errors.value.gender = "Gender must be selected from the options above"
@@ -207,6 +230,10 @@ const validateReason = (blur) => {
     if (blur) errors.value.reason = "Reason must be at least 10 characters"
   } else if (formData.value.reason.length > 256) {
     if (blur) errors.value.reason = "Reason must be no more than 256 characters"
+  }
+  // Checking if friend is in the reasons
+  else if (formData.value.reason.includes('friend')) {
+    errors.value.reason = "Great to have a Friend"
   } else {
     errors.value.reason = null;
   }
