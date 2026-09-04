@@ -69,6 +69,10 @@
                 'text-success': errors.reason === 'Great to have a Friend'
               }">{{ errors.reason }}</div>
             </div>
+            <div class="mb-3">
+              <label for="reason" class="form-label">Suburb</label>
+              <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
+            </div>
             <div class="text-center">
               <button type="submit" class="btn btn-primary me-2">Submit</button>
               <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
@@ -145,7 +149,8 @@ const formData = ref({
     password: null,
     confirmPassword: null,
     reason: null,
-    gender: null
+    gender: null,
+    sububr: 'Clayton'
 });
 
 const submittedCards = ref([]);
@@ -245,18 +250,5 @@ const validateReason = (blur) => {
 </script>
 
 <style scoped>
-   .card {
-   border: 1px solid #ccc;
-   border-radius: 10px;
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-   }
-   .card-header {
-   background-color: #275FDA;
-   color: white;
-   padding: 10px;
-   border-radius: 10px 10px 0 0;
-   }
-   .list-group-item {
-   padding: 10px;
-   }
+
 </style>
