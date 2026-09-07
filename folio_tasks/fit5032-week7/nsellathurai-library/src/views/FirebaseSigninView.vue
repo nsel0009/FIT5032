@@ -1,12 +1,31 @@
 <template>
-  <div class="container mt-5">
-    <h1 class="text-center">Firebase Login</h1>
-    <p class="text-center">Please sign in with your Firebase account to access your personalized library features.</p>
-  </div>
+  <h1>Sign In</h1>
+  <p><input type="text" placeholder="Email" v-model = "email" /></p>
+  <p><input type="password" placeholder="Password" v-model = "password" /></p>
+  <p><button @click="signin">Sign in via Firebase</button></p>
 </template>
 
 <script setup>
-// No script needed for now
+import { ref } from 'vue'
+import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
+import { useRouter } from 'vue-router'
+
+const email = ref('')
+const password = ref('')
+const router = useRouter()
+const auth = getAuth()
+
+const signin = () => {
+  signInWithEmailAndPassword(auth, email.value, password.value)
+    .then((userCredential) => {
+      console.log("Firebase Sign-in Successful");
+      router.push('/');
+      console.log(auth.currentUser)
+    })
+    .catch((error) => {
+      console.error(error.code);
+    });
+}
 </script>
 
 <style>
