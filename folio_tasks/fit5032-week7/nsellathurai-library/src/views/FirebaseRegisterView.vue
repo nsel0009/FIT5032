@@ -1,6 +1,12 @@
 <template>
   <h1>Create an Account</h1>
   <p><input type="text" placeholder="Email" v-model = "email" /></p>
+  <p>
+    <select placeholder="Role" v-model = "role">
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+    </select>
+  </p>
   <p><input type="password" placeholder="Password" v-model = "password" /></p>
   <p><button @click="register">Save to Firebase</button></p>
 </template>
@@ -11,6 +17,7 @@ import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth'
 import { useRouter } from 'vue-router'
 
 const email = ref('')
+const role = ref('')
 const password = ref('')
 const router = useRouter()
 const auth = getAuth()
