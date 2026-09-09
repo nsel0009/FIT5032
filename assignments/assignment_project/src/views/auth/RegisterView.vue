@@ -5,6 +5,8 @@
       <div class="row">
         <div class="col-md-8 offset-md-2">
           <h1 class="text-center">Register Your Account</h1>
+          <p>Fill out the form below to register a new user.</p>
+          <br />
           <form @submit.prevent="submitForm">
             <table style="width: 100%;">
               <tr>

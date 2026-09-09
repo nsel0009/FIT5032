@@ -1,5 +1,3 @@
-<!-- JSON.vue -->
-
 <template>
   <div class="container-block">
     <h2>List of All Users</h2>
@@ -24,48 +22,19 @@
 
   </div>
 
-  <div class="container-block">
-    <h2>List of All Sessions</h2>
-    <section class="container-section">
-      <ul>
-        <li v-for="session in sessions" :key="session.id">
-          {{ session.topic }} ({{ session.date }}) - {{ session.teacher }}
-          <br />
-          Number of People Enrolled: {{ session.number_of_people_enrolled }}
-          <br /><br />
-          {{ session.description }}
-        </li>
-      </ul>
-    </section>
-
-    <section class="container-section">
-      <div class="w-full">
-        <DataTable :value="sessionsTableData" tableStyle="min-width: 50rem">
-          <Column class="column-text" field="date" header ="Date" />
-          <Column class="column-text" field="topic" header ="Topic" />
-          <Column class="column-text" field="teacher" header ="Teacher" />
-          <Column class="column-text" field="number_of_people_enrolled" header ="Number of People Enrolled" />
-        </DataTable>
-      </div>
-    </section>
-
-  </div>
-
 </template>
 
 <script setup>
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
-import users from "../assets/json/users.json"
-import sessions from "../assets/json/sessions.json"
+import users from "../../assets/json/users.json"
 
 import { ref, computed } from "vue"
 
 const showMessage = ref(false)
 
 const usersTableData = ref(users);
-const sessionsTableData = ref(sessions);
 
 </script>
 

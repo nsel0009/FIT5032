@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import RegisterView from '../views/auth/RegisterView.vue'
+import UserIndexView from '../views/users/UserIndexView.vue'
+import SessionIndexView from '../views/sessions/SessionIndexView.vue'
 
 const routes = [
   {
@@ -12,11 +15,21 @@ const routes = [
   //   name: 'Login',
   //   component: FirebaseSigninView
   // },
-  // {
-  //   path: '/Register',
-  //   name: 'Register',
-  //   component: FirebaseRegisterView
-  // }
+  {
+    path: '/Register',
+    name: 'Register',
+    component: RegisterView
+  },
+    {
+    path: '/Users/Index',
+    name: 'View All Users',
+    component: UserIndexView
+  },
+    {
+    path: '/Sessions/Index',
+    name: 'View All Sessions',
+    component: SessionIndexView
+  },
 ]
 
 const router = createRouter({

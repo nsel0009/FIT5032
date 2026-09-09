@@ -10,10 +10,16 @@
         </li>
         <!-- <li class="nav-item">
           <router-link to="/Login" class="nav-link" active-class="active">Firebase Login</router-link>
+        </li> -->
+        <li class="nav-item">
+          <router-link to="/Register" class="nav-link" active-class="active">Register</router-link>
         </li>
         <li class="nav-item">
-          <router-link to="/Register" class="nav-link" active-class="active">Firebase Register</router-link>
-        </li> -->
+          <router-link to="/Users/Index" class="nav-link" active-class="active">All Users</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link to="/Sessions/Index" class="nav-link" active-class="active">All Sessions</router-link>
+        </li>
       </ul>
     </header>
   </div>

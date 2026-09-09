@@ -1,34 +1,12 @@
 <template>
-  <div class="wrapper">
-    <section class="container-section">
     <div class="logo-image">
       <img alt="Vue logo" class="logo" src="../assets/logo.svg" width="125" height="125" />
     </div>
     <br />
     <div>
       <h1>FIT5032 - NFP Environmental Education and Climate Literacy</h1>
+      <p>Welcome to the Landing Page</p>
     </div>
-      <h2>Registration Form</h2>
-      <p>Fill out the form below to register a new user.</p>
-      <br />
-      <!-- <main>
-        <RegistrationForm />
-      </main> -->
-    </section>
-  </div>
-
-  <br />
-  <div class="wrapper">
-    <section class="container-section">
-      <br />
-      <h2>Tables and Cards For Users and Sessions</h2>
-      <p>The following shows the information for both users and sessions. These are shown both in card format and table format.</p>
-      <br />
-      <!-- <main>
-        <JSON />
-      </main> -->
-    </section>
-  </div>
 </template>
 
 <script setup>
