@@ -183,7 +183,7 @@ const submitForm = async () => {
         reason: formData.value.reason
       });
       console.log('User registered successfully');
-      router.push('/Login'); // Redirect to the login page
+      router.push('/');
       console.log(auth.currentUser);
     } catch (error) {
       console.error('Error creating user:', error.code);

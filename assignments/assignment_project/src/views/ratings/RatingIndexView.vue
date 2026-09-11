@@ -8,12 +8,52 @@
         <div>
           <h1>Ratings Page</h1>
           <p>Leave Reviews and Ratings Here</p>
+          <br />
+          <router-link to="/Ratings/Add" class="nav-link" active-class="active">Add a Rating</router-link>
         </div>
+
+      <div v-if="ratings.length === 0" class="no-results">
+        No ratings found.
+      </div>
+
+      <div v-else class="ratings-list">
+        <div v-for="rating in ratings" :key="rating.id" class="rating-card">
+          <p class="score"><strong>Score:</strong> {{ rating.rating }}/10</p>
+          <h3>{{ rating.title }}</h3>
+          <p class="session-topic-tag"><strong>Topic:</strong> {{ rating.sessionTopic }}</p>
+          <p class="desc">{{ rating.description }}</p>
+        </div>
+      </div>
+
       </section>
     </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+
+const db = getFirestore();
+
+const ratings = ref([]);
+
+onMounted(async () => {
+
+  try {
+
+    const querySnapshot = await getDocs(collection(db, 'ratings'));
+
+    ratings.value = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+  } catch (error) {
+    console.error('Error fetching ratings:', error);
+  }
+
+});
+
 </script>
 
 <style scoped>
