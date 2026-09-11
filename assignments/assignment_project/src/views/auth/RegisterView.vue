@@ -73,7 +73,7 @@
               </tr>
               <tr>
                 <td>
-                  <label for="gender" class="form-label">Gender</label>
+                  <label for="role" class="form-label">Role</label>
                 </td>
                 <td>
                   <label for="status" class="form-label">Status</label>
@@ -81,15 +81,14 @@
               </tr>
               <tr>
                 <td>
-                  <select class="form-select" id="gender"
-                  @blur="() => validateReason(true)"
-                  @input="() => validateReason(false)"
-                  v-model="formData.gender">
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
+                  <select class="form-select" id="role"
+                  @blur="() => validateRole(true)"
+                  @input="() => validateRole(false)"
+                  v-model="formData.role">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
                   </select>
-                  <div v-if="errors.gender" class="text-danger">{{ errors.gender }}</div>
+                  <div v-if="errors.role" class="text-danger">{{ errors.role }}</div>
                 </td>
                 <td>
                   <select class="form-select" id="status"
@@ -138,7 +137,7 @@
           <Column class="column-text" field="username" header ="Username" />
           <Column class="column-text" field="email" header ="Email" />
           <Column class="column-text" field="password" header ="Password" />
-          <Column class="column-text" field="gender" header ="Gender" />
+          <Column class="column-text" field="role" header ="Role" />
           <Column class="column-text" field="status" header ="Status" />
           <Column class="column-text" field="reason" header ="Reason" />
         </DataTable>
@@ -163,7 +162,7 @@ const formData = ref({
     password: '',
     status: '',
     reason: '',
-    gender: ''
+    role: ''
 });
 
 const submittedCards = ref([]);
@@ -174,10 +173,10 @@ const submitForm = () => {
   validateUsername(true);
   validateEmail(true);
   validatePassword(true);
-  validateGender(true);
+  validateRole(true);
   validateStatus(true);
   validateReason(true);
-  if (!errors.value.firstname && !errors.value.lastname && !errors.value.username && !errors.value.password && !errors.value.gender && !errors.value.status && !errors.value.reason) {
+  if (!errors.value.firstname && !errors.value.lastname && !errors.value.username && !errors.value.password && !errors.value.role && !errors.value.status && !errors.value.reason) {
     submittedCards.value.push({...formData.value});
     clearForm();
   }
@@ -188,7 +187,7 @@ const clearForm = () => {
         username: '',
         password: '',
         reason: '',
-        gender: ''
+        role: ''
     };
 };
 
@@ -196,7 +195,7 @@ const errors = ref({
   username: null,
   password: null,
   resident: null,
-  gender: null,
+  role: null,
   reason: null,
 })
 
@@ -277,11 +276,11 @@ const validatePassword = (blur) => {
   }
 }
 
-const validateGender = (blur) => {
-  if (!formData.value.gender) {
-    if (blur) errors.value.gender = "Gender must be selected from the options above"
+const validateRole = (blur) => {
+  if (!formData.value.role) {
+    if (blur) errors.value.role = "Role must be selected from the options above"
   } else {
-    errors.value.gender = null;
+    errors.value.role = null;
   }
 }
 
