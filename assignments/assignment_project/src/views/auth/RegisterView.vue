@@ -130,29 +130,15 @@
         </div>
       </div>
 
-      <div class="w-full">
-        <DataTable :value="submittedCards" tableStyle="min-width: 50rem">
-          <Column class="column-text" field="firstname" header ="First Name" />
-          <Column class="column-text" field="lastname" header ="Last Name" />
-          <Column class="column-text" field="username" header ="Username" />
-          <Column class="column-text" field="email" header ="Email" />
-          <Column class="column-text" field="password" header ="Password" />
-          <Column class="column-text" field="role" header ="Role" />
-          <Column class="column-text" field="status" header ="Status" />
-          <Column class="column-text" field="reason" header ="Reason" />
-        </DataTable>
-      </div>
-
     </div>
 
 </template>
 
 <script setup>
 
-import DataTable from 'primevue/datatable';
-import Column from 'primevue/column';
-
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
 
 const formData = ref({
     firstname: '',
@@ -164,8 +150,9 @@ const formData = ref({
     reason: '',
     role: ''
 });
+const router = useRouter();
+const auth = getAuth();
 
-const submittedCards = ref([]);
 
 const submitForm = () => {
   validateFirstname(true);
@@ -177,7 +164,17 @@ const submitForm = () => {
   validateStatus(true);
   validateReason(true);
   if (!errors.value.firstname && !errors.value.lastname && !errors.value.username && !errors.value.password && !errors.value.role && !errors.value.status && !errors.value.reason) {
-    submittedCards.value.push({...formData.value});
+    // Add new user to the database
+    createUserWithEmailAndPassword(auth, formData.value.email, formData.value.password)
+      .then((data) => {
+        // User created successfully
+        console.log('User registered successfully');
+        router.push('/Login');
+      })
+      .catch((error) => {
+        console.error('Error creating user:', error.code);
+      });
+
     clearForm();
   }
 };

@@ -8,9 +8,9 @@
           <router-link to="/" class="nav-link" active-class="active" aria-current="page"
             >Home</router-link>
         </li>
-        <!-- <li class="nav-item">
-          <router-link to="/Login" class="nav-link" active-class="active">Firebase Login</router-link>
-        </li> -->
+        <li class="nav-item">
+          <router-link to="/Login" class="nav-link" active-class="active">Login</router-link>
+        </li>
         <li class="nav-item">
           <router-link to="/Register" class="nav-link" active-class="active">Register</router-link>
         </li>

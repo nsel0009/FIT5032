@@ -5,7 +5,7 @@
     "lastname": "Doe",
     "username": "JohnDoe123",
     "email": "john.doe@gmail.com",
-    "gender": "male",
+    "role": "user",
     "status": "active",
     "reason": "I want to learn more about climate literacy"
   },
@@ -15,7 +15,7 @@
     "lastname": "Doe",
     "username": "JaneDoe456",
     "email": "jane.doe@gmail.com",
-    "gender": "female",
+    "role": "admin",
     "status": "active",
     "reason": "I want to use the map feature that this business provides"
   },
@@ -25,7 +25,7 @@
     "lastname": "Jones",
     "username": "JonesOfArcs",
     "email": "bob.jones@gmail.com",
-    "gender": "other",
+    "role": "user",
     "status": "disabled",
     "reason": "I want to learn more about how I can help out my community and its environmental needs"
   }
