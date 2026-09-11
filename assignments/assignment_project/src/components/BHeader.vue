@@ -60,14 +60,14 @@ onMounted(() => {
   const auth = getAuth();
   const db = getFirestore();
 
-  onAuthStateChanged(auth, (user) => {
+  onAuthStateChanged(auth, async (user) => {
     loading.value = true;
     if (user) {
       loggedInUser.value = user;
       isLoggedIn.value = true;
 
       const docRef = doc(db, "users", user.uid);
-      const docSnap = getDoc(docRef);
+      const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
         profileData.value = docSnap.data();

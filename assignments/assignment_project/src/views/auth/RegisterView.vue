@@ -170,7 +170,7 @@ const submitForm = async () => {
   if (!errors.value.firstname && !errors.value.lastname && !errors.value.username && !errors.value.password && !errors.value.role && !errors.value.status && !errors.value.reason) {
     // Add new user to the database
     try {
-      const registeredUser = createUserWithEmailAndPassword(auth, formData.value.email, formData.value.password);
+      const registeredUser = await createUserWithEmailAndPassword(auth, formData.value.email, formData.value.password);
       const user = registeredUser.user;
 
       await setDoc(doc(db, "users", user.uid), {
