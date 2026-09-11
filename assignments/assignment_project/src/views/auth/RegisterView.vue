@@ -139,6 +139,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import {getAuth, createUserWithEmailAndPassword} from 'firebase/auth';
+import { getFirestore, doc, setDoc } from 'firebase/firestore';
 
 const formData = ref({
     firstname: '',
@@ -150,11 +151,13 @@ const formData = ref({
     reason: '',
     role: ''
 });
+
 const router = useRouter();
 const auth = getAuth();
+const db = getFirestore();
 
 
-const submitForm = () => {
+const submitForm = async () => {
   validateFirstname(true);
   validateLastname(true);
   validateUsername(true);
@@ -163,19 +166,28 @@ const submitForm = () => {
   validateRole(true);
   validateStatus(true);
   validateReason(true);
+
   if (!errors.value.firstname && !errors.value.lastname && !errors.value.username && !errors.value.password && !errors.value.role && !errors.value.status && !errors.value.reason) {
     // Add new user to the database
-    createUserWithEmailAndPassword(auth, formData.value.email, formData.value.password)
-      .then((data) => {
-        // User created successfully
-        console.log('User registered successfully');
-        router.push('/Login');
-      })
-      .catch((error) => {
-        console.error('Error creating user:', error.code);
-      });
+    try {
+      const registeredUser = createUserWithEmailAndPassword(auth, formData.value.email, formData.value.password);
+      const user = registeredUser.user;
 
-    clearForm();
+      await setDoc(doc(db, "users", user.uid), {
+        email: formData.value.email,
+        username: formData.value.username,
+        firstname: formData.value.firstname,
+        lastname: formData.value.lastname,
+        role: formData.value.role,
+        status: formData.value.status,
+        reason: formData.value.reason
+      });
+      console.log('User registered successfully');
+      router.push('/Login'); // Redirect to the login page
+      console.log(auth.currentUser);
+    } catch (error) {
+      console.error('Error creating user:', error.code);
+    }
   }
 };
 

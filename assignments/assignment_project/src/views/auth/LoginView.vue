@@ -32,6 +32,7 @@ const login = async () => {
     await signInWithEmailAndPassword(auth, email.value, password.value);
     console.log('Login successful');
     router.push('/'); // Redirect to the landing page after successful login
+    console.log(auth.currentUser);
   } catch (error) {
     console.error('Login failed:', error.code);
   }
