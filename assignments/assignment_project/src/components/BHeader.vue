@@ -19,6 +19,9 @@
         </li>
 
         <!-- User Visible Links -->
+        <li class="nav-item" v-if="userRole === 'user'">
+          <router-link to="/Ratings/Index" class="nav-link" active-class="active">All Ratings</router-link>
+        </li>
 
         <!-- Log Out -->
          <p>({{ username }})</p>
