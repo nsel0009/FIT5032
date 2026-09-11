@@ -49,11 +49,13 @@
 import { ref, onMounted } from 'vue';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
 import { getFirestore, doc, getDoc } from 'firebase/firestore';
+import { useRouter } from 'vue-router';
 
 
 const loggedInUser = ref(null);
 const profileData = ref(null);
 const loading = ref(true);
+const router = useRouter();
 const isLoggedIn = ref(false);
 const userRole = ref('');
 const username = ref('');
@@ -92,6 +94,7 @@ const handleLogout = async () => {
   const auth = getAuth();
   try {
     await signOut(auth);
+    router.push('/Login'); // Redirect to the login page after logout
   } catch (error) {
     console.error("Logout failed:", error.message);
   }

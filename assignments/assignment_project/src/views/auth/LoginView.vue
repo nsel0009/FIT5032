@@ -7,8 +7,10 @@
           <h1 class="text-center">Login</h1>
           <p>Sign into your account.</p>
           <br />
-          <p><input type="email" placeholder="Email" v-model="email" /></p>
-          <p><input type="password" placeholder="Password" v-model="password" /></p>
+          <label for="email" class="form-label">Email</label>
+          <p><input type="email" placeholder="Email" v-model="email" class="form-control" /></p>
+          <label for="password" class="form-label">Password</label>
+          <p><input type="password" placeholder="Password" v-model="password" class="form-control" /></p>
           <p><button @click="login" class="custom-btn-primary">Login</button></p>
         </div>
       </div>
@@ -41,6 +43,25 @@ const login = async () => {
 </script>
 
 <style scoped>
+
+.form-control, .form-select, .error-message, .text-danger {
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing:
+  border-box;
+  color: black;
+  background-color: #f4f4f4;
+}
+
+.form-label{
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+}
 
   .container-block {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;

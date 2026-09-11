@@ -337,15 +337,24 @@ const validateReason = (blur) => {
     width: 50%;
   }
 
-  .form-control, .form-select, .form-label, .error-message, .text-danger {
-    padding: 10px 10px;
-    margin: 5px 0;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing:
-    border-box;
-    color: black;
-  }
+.form-control, .form-select, .error-message, .text-danger {
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing:
+  border-box;
+  color: black;
+  background-color: #f4f4f4;
+}
+
+.form-label{
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
+}
 
   .container-section {
     background-color: white;

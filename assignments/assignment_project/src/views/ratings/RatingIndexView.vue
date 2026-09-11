@@ -10,6 +10,7 @@
           <p>Leave Reviews and Ratings Here</p>
           <br />
           <router-link to="/Ratings/Add" class="nav-link" active-class="active">Add a Rating</router-link>
+          <br />
         </div>
 
       <div v-if="ratings.length === 0" class="no-results">

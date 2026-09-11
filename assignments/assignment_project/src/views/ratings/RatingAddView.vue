@@ -9,7 +9,7 @@
         <div>
           <form @submit.prevent="submitForm">
             <div>
-              <label>Session Topic:</label>
+              <label for="sessionTopic" class="form-label">Session Topic:</label>
               <input id="sessionTopic" class="form-control"
               @blur="() => validateSessionTopic(true)"
               @input="() => validateSessionTopic(false)"
@@ -18,7 +18,7 @@
             </div>
 
             <div>
-              <label>Rating (/10):</label>
+              <label for="rating" class="form-label">Rating (/10):</label>
               <input id="rating" class="form-control"
               @blur="() => validateRating(true)"
               @input="() => validateRating(false)"
@@ -27,7 +27,7 @@
             </div>
 
             <div>
-              <label>Review Title:</label>
+              <label for="title" class="form-label">Review Title:</label>
               <input id="title" class="form-control"
                 @blur="() => validateTitle(true)"
                 @input="() => validateTitle(false)"
@@ -36,7 +36,7 @@
             </div>
 
             <div>
-              <label>Review Description:</label>
+              <label for="description" class="form-label">Review Description:</label>
               <textarea id="description" class="form-control"
                 @blur="() => validateDescription(true)"
                 @input="() => validateDescription(false)"
@@ -191,6 +191,25 @@ header {
     width: 100%;
   }
 
+}
+
+.form-control, .form-select, .error-message, .text-danger {
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing:
+  border-box;
+  color: black;
+  background-color: #f4f4f4;
+}
+
+.form-label{
+  padding: 10px 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  color: black;
 }
 
 .container-block {
