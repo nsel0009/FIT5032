@@ -11,7 +11,7 @@
 
 <script setup>
   import { ref, onMounted } from 'vue';
-  import { db } from '../firebase/init.js';
+  import  db from '../firebase/init.js';
   import { collection, query, where, getDocs } from 'firebase/firestore';
 
   const books = ref([]);

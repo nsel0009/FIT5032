@@ -17,8 +17,12 @@
         <li class="nav-item">
           <router-link to="/FireRegister" class="nav-link" active-class="active">Firebase Register</router-link>
         </li>
-                <li class="nav-item">
+        <li class="nav-item">
           <router-link to="/AddBook" class="nav-link" active-class="active">Add Book</router-link>
+        </li>
+
+        <li class="nav-item">
+          <router-link to="/BookList" class="nav-link" active-class="active">View Book List</router-link>
         </li>
       </ul>
     </header>

@@ -6,6 +6,7 @@
         <label for="isbn">ISBN:</label>
         <input type="text" v-model="isbn" id="isbn" required>
       </div>
+      <br />
       <div>
         <label for="name">Name:</label>
         <input type="text" v-model="name" id="name" required>
