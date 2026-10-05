@@ -56,7 +56,7 @@ const temperature = computed(() => {
 
 const iconUrl = computed(() => {
   return weatherData.value
-    ? `https://api.openweathermap.org/img/wn/${weatherData.value.weather[0].icon}.png`
+    ? `https://openweathermap.org/payload/api/media/file/${weatherData.value.weather[0].icon}.png`
     : null;
 });
 
