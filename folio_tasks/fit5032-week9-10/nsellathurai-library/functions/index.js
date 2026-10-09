@@ -8,7 +8,6 @@
  */
 
 const {setGlobalOptions} = require("firebase-functions");
-const {onRequest} = require("firebase-functions/https");
 const logger = require("firebase-functions/logger");
 
 // For cost control, you can set the maximum number of containers that can be
@@ -21,7 +20,7 @@ const logger = require("firebase-functions/logger");
 // functions should each use functions.runWith({ maxInstances: 10 }) instead.
 // In the v1 API, each function can only serve one request per container, so
 // this will be the maximum concurrent request count.
-setGlobalOptions({ maxInstances: 10 });
+setGlobalOptions({maxInstances: 10});
 
 // Create and deploy your first functions
 // https://firebase.google.com/docs/functions/get-started
@@ -30,3 +29,22 @@ setGlobalOptions({ maxInstances: 10 });
 //   logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
+
+const {onRequest} = require("firebase-functions/v2/https");
+const admin = require("firebase-admin");
+const cors = require("cors")({origin: true});
+
+admin.initializeApp();
+
+exports.countBooks = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const snapshot = await admin.firestore().collection("books").get();
+      const count = snapshot.size;
+      res.status(200).send({count});
+    } catch (error) {
+      logger.error("Error occurred while counting books:", error.message);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+});

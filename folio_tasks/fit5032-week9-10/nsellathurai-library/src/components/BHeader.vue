@@ -28,6 +28,9 @@
           <router-link to="/WeatherCheck" class="nav-link" active-class="active">Get Weather</router-link>
         </li>
         <li class="nav-item">
+          <router-link to="/getbookcount" class="nav-link" active-class="active">Get Book Count</router-link>
+        </li>
+        <li class="nav-item">
           <router-link to="/CountBookAPI" class="nav-link" active-class="active">Count Books</router-link>
         </li>
       </ul>
