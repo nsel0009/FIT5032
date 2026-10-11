@@ -13,30 +13,53 @@
           <br />
         </div>
 
-      <div v-if="ratings.length === 0" class="no-results">
-        No ratings found.
-      </div>
-
-      <div v-else class="ratings-list">
-        <div v-for="rating in ratings" :key="rating.id" class="rating-card">
-          <p class="score"><strong>Score:</strong> {{ rating.rating }}/10</p>
-          <h3>{{ rating.title }}</h3>
-          <p class="session-topic-tag"><strong>Topic:</strong> {{ rating.sessionTopic }}</p>
-          <p class="desc">{{ rating.description }}</p>
+        <div v-if="ratings.length === 0" class="no-results">
+          No ratings found.
         </div>
-      </div>
+
+        <div v-else class="ratings-list">
+            <div>
+              <DataTable
+              :value="ratings"
+              :paginator="true"
+              :rows="10"
+              v-model:filters="filters"
+              :globalFilterFields="['sessionTopic', 'rating', 'title', 'description']"
+              tableStyle="min-width: 50rem"
+              >
+
+                <div class="datatable-header">
+                  <span class="p-input">
+                    <InputText v-model="filters['global'].value" placeholder="Search for Reviews..." />
+                  </span>
+                </div>
+
+                <Column class="column-text" field="sessionTopic" header ="Topic" sortable/>
+                <Column class="column-text" field="rating" header ="Rating" sortable/>
+                <Column class="column-text" field="title" header ="Review" />
+                <Column class="column-text" field="description" header ="Description" />
+              </DataTable>
+            </div>
+        </div>
 
       </section>
     </div>
 </template>
 
 <script setup>
+
 import { ref, onMounted } from 'vue';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import DataTable from 'primevue/datatable';
+import Column from 'primevue/column';
+import InputText from 'primevue/inputtext';
 
 const db = getFirestore();
 
 const ratings = ref([]);
+const filters = ref({
+  'global': { value: null, matchMode: 'contains' }
+});
 
 onMounted(async () => {
 
@@ -164,6 +187,27 @@ li {
 }
 
 :deep(.column-text) {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: black;
+}
+
+:deep(.p-paginator) {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: black;
+}
+
+:deep(.p-paginator .p-paginator-page),
+:deep(.p-paginator .p-paginator-icon) {
+  color: black;
+}
+
+:deep(.p-inputtext) {
   background-color: #f0f0f0;
   padding: 10px;
   margin: 5px 0;
