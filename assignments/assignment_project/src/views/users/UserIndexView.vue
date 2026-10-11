@@ -1,21 +1,28 @@
 <template>
   <div class="container-block">
     <h2>List of All Users</h2>
-    <section class="container-section">
-      <ul>
-        <li v-for="user in users" :key="user.id">
-          {{ user.firstname }} {{ user.lastname }} ({{ user.username }}) - {{ user.email }}
-        </li>
-      </ul>
-    </section>
 
     <section class="container-section">
       <div class="w-full">
-        <DataTable :value="usersTableData" tableStyle="min-width: 50rem">
-          <Column class="column-text" field="firstname" header ="First Name" />
-          <Column class="column-text" field="lastname" header ="Last Name" />
-          <Column class="column-text" field="email" header ="Email" />
-          <Column class="column-text" field="status" header ="Status" />
+        <DataTable
+          :value="usersTableData"
+          :paginator="true"
+          :rows="10"
+          v-model:filters="filters"
+          :globalFilterFields="['firstname', 'lastname', 'email']"
+          tableStyle="min-width: 50rem"
+        >
+
+          <div class="datatable-header">
+            <span class="p-input">
+              <InputText v-model="filters['global'].value" placeholder="Search for Users..." />
+            </span>
+          </div>
+
+          <Column class="column-text" field="firstname" header ="First Name" sortable/>
+          <Column class="column-text" field="lastname" header ="Last Name" sortable/>
+          <Column class="column-text" field="email" header ="Email" sortable/>
+          <Column class="column-text" field="status" header ="Status" sortable/>
         </DataTable>
       </div>
     </section>
@@ -27,6 +34,7 @@
 <script setup>
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import InputText from 'primevue/inputtext';
 
 import users from "../../assets/json/users.json"
 
@@ -35,6 +43,9 @@ import { ref, computed } from "vue"
 const showMessage = ref(false)
 
 const usersTableData = ref(users);
+const filters = ref({
+  'global': { value: null, matchMode: 'contains' }
+});
 
 </script>
 
@@ -102,6 +113,27 @@ li {
 }
 
 :deep(.column-text) {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: black;
+}
+
+:deep(.p-paginator) {
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  color: black;
+}
+
+:deep(.p-paginator .p-paginator-page),
+:deep(.p-paginator .p-paginator-icon) {
+  color: black;
+}
+
+:deep(.p-inputtext) {
   background-color: #f0f0f0;
   padding: 10px;
   margin: 5px 0;
