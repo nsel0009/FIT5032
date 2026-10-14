@@ -2,7 +2,7 @@
   <!-- Using Bootstrap's Header template (starter code) -->
   <!-- https://getbootstrap.com/docs/5.0/examples/headers/ -->
   <div class="container">
-    <header class="d-flex justify-content-center py-3">
+    <header class="display: flex list-style-type: none justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item">
           <router-link to="/" class="nav-link" active-class="active" aria-current="page"
@@ -10,6 +10,11 @@
         </li>
         <li class="nav-item">
           <router-link to="/Contact" class="nav-link" active-class="active">Contact Us</router-link>
+        </li>
+
+        <!-- Logged in Visible Links-->
+        <li class="nav-item" v-if="userRole === 'admin' || userRole === 'user'">
+          <router-link to="/Map" class="nav-link" active-class="active">The Map</router-link>
         </li>
 
         <template v-if="isLoggedIn">

@@ -3,10 +3,11 @@ import HomeView from '../views/HomeView.vue'
 import RegisterView from '../views/auth/RegisterView.vue'
 import UserIndexView from '../views/users/UserIndexView.vue'
 import SessionIndexView from '../views/sessions/SessionIndexView.vue'
-import LoginView from '@/views/auth/LoginView.vue'
-import RatingIndexView from '@/views/ratings/RatingIndexView.vue'
-import RatingAddView from '@/views/ratings/RatingAddView.vue'
-import ContactView from '@/views/ContactView.vue'
+import LoginView from '../views/auth/LoginView.vue'
+import RatingIndexView from '../views/ratings/RatingIndexView.vue'
+import RatingAddView from '../views/ratings/RatingAddView.vue'
+import ContactView from '../views/ContactView.vue'
+import MapView from '../views/map/MapView.vue'
 
 const routes = [
   {
@@ -48,6 +49,11 @@ const routes = [
     path: '/Contact',
     name: 'Contact Us',
     component: ContactView
+  },
+  {
+    path: '/Map',
+    name: 'The Map',
+    component: MapView
   }
 
 ]

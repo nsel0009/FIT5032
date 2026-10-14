@@ -41,15 +41,10 @@
       margin: 0 2rem 0 0;
     }
 
-    .wrapper {
+    header .wrapper {
       display: flex;
       place-items: flex-start;
       flex-wrap: wrap;
-    }
-
-    header {
-      margin: 0;
-      text-align: center;
     }
 
     .logo-image {
@@ -59,6 +54,10 @@
 
     .container-section {
       width: 100%;
+    }
+
+    .list-group-item {
+      padding: 10px;
     }
 
   }
