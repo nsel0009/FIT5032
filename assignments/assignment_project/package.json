@@ -13,6 +13,7 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@emailjs/browser": "^5.0.3",
     "@primeuix/themes": "^3.0.0",
     "@primevue/themes": "^4.5.4",
     "firebase": "^12.19.0",

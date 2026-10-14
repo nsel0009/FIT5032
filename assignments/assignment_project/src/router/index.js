@@ -6,6 +6,7 @@ import SessionIndexView from '../views/sessions/SessionIndexView.vue'
 import LoginView from '@/views/auth/LoginView.vue'
 import RatingIndexView from '@/views/ratings/RatingIndexView.vue'
 import RatingAddView from '@/views/ratings/RatingAddView.vue'
+import ContactView from '@/views/ContactView.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/Ratings/Add',
     name: 'Add New Rating',
     component: RatingAddView
+  },
+  {
+    path: '/Contact',
+    name: 'Contact Us',
+    component: ContactView
   }
 
 ]

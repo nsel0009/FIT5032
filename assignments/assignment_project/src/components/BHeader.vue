@@ -8,6 +8,9 @@
           <router-link to="/" class="nav-link" active-class="active" aria-current="page"
             >Home</router-link>
         </li>
+        <li class="nav-item">
+          <router-link to="/Contact" class="nav-link" active-class="active">Contact Us</router-link>
+        </li>
 
         <template v-if="isLoggedIn">
         <!-- Admin Visible Links -->

@@ -6,8 +6,8 @@
       <section class="container-section">
         <br />
         <div>
-          <h1>FIT5032 - NFP Environmental Education and Climate Literacy</h1>
-          <p>Welcome to the Landing Page</p>
+          <h1>SustainEnviron Education</h1>
+          <p>Welcome to our website. We are a NFP dedicated to environmental education and climate literacy.</p>
         </div>
       </section>
     </div>
