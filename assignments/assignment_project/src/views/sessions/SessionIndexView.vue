@@ -3,6 +3,7 @@
     <h2>List of All Sessions</h2>
 
     <section class="container-section">
+      <h3>Total Number of Sessions: {{ getTotalCount() }}</h3>
       <div class="w-full">
         <DataTable
         :value="sessionsTableData"
@@ -38,13 +39,48 @@ import InputText from 'primevue/inputtext';
 
 import sessions from "../../assets/json/sessions.json"
 
-import { ref, computed } from "vue"
+import { ref, onMounted } from "vue"
+import axios from 'axios';
 
 const showMessage = ref(false)
 
 const sessionsTableData = ref(sessions);
 const filters = ref({
   'global': { value: null, matchMode: 'contains' }
+});
+
+const totalCount = ref(null);
+const error = ref(null);
+
+const getTotalCount = async () => {
+  try {
+    const response = await axios.get('');
+    totalCount.value = response.data.count;
+    error.value = null;
+    return totalCount.value
+  } catch (err) {
+    error.value = 'Error fetching total number of sessions: ' + err.message;
+    totalCount.value = null;
+  }
+}
+
+onMounted(async () => {
+
+  try {
+
+    // const querySnapshot = await getDocs(collection(db, 'ratings'));
+
+    // ratings.value = querySnapshot.docs.map(doc => ({
+    //   id: doc.id,
+    //   ...doc.data()
+    // }));
+
+    getTotalCount();
+
+  } catch (error) {
+    console.error('Error fetching ratings:', error);
+  }
+
 });
 
 </script>

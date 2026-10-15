@@ -4,6 +4,7 @@
         <img alt="Vue logo" class="logo" src="../../assets/logo.svg" width="125" height="125" />
       </div>
       <section class="container-section">
+        <h3>Total Number of Ratings: {{ totalCount }}</h3>
         <br />
         <div>
           <h1>Ratings Page</h1>
@@ -53,6 +54,7 @@ import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
+import axios from 'axios';
 
 const db = getFirestore();
 
@@ -60,6 +62,20 @@ const ratings = ref([]);
 const filters = ref({
   'global': { value: null, matchMode: 'contains' }
 });
+
+const totalCount = ref(null);
+const error = ref(null);
+
+const getTotalCount = async () => {
+  try {
+    const response = await axios.get('https://countratings-rqvhgeks6a-uc.a.run.app');
+    totalCount.value = response.data.count;
+    error.value = null;
+  } catch (err) {
+    error.value = 'Error fetching total number of ratings: ' + err.message;
+    totalCount.value = null;
+  }
+}
 
 onMounted(async () => {
 
@@ -71,6 +87,8 @@ onMounted(async () => {
       id: doc.id,
       ...doc.data()
     }));
+
+    getTotalCount();
 
   } catch (error) {
     console.error('Error fetching ratings:', error);

@@ -3,6 +3,7 @@
     <h2>List of All Users</h2>
 
     <section class="container-section">
+      <h3>Total Number of Users: {{ totalCount }}</h3>
       <div class="w-full">
         <DataTable
           :value="usersTableData"
@@ -35,16 +36,50 @@
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
-
+import axios from 'axios';
 import users from "../../assets/json/users.json"
 
-import { ref, computed } from "vue"
+import { ref, onMounted } from "vue"
 
 const showMessage = ref(false)
 
 const usersTableData = ref(users);
 const filters = ref({
   'global': { value: null, matchMode: 'contains' }
+});
+
+
+const totalCount = ref(null);
+const error = ref(null);
+
+const getTotalCount = async () => {
+  try {
+    const response = await axios.get('https://countusers-rqvhgeks6a-uc.a.run.app');
+    totalCount.value = response.data.count;
+    error.value = null;
+  } catch (err) {
+    error.value = 'Error fetching total number of users: ' + err.message;
+    totalCount.value = null;
+  }
+}
+
+onMounted(async () => {
+
+  try {
+
+    // const querySnapshot = await getDocs(collection(db, 'users'));
+
+    // ratings.value = querySnapshot.docs.map(doc => ({
+    //   id: doc.id,
+    //   ...doc.data()
+    // }));
+
+    getTotalCount();
+
+  } catch (error) {
+    console.error('Error fetching users:', error);
+  }
+
 });
 
 </script>
