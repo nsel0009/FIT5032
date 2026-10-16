@@ -35,6 +35,9 @@
         <li class="nav-item" v-if="userRole === 'admin'">
           <router-link to="/Sessions/Index" class="nav-link" active-class="active">All Sessions</router-link>
         </li>
+        <li class="nav-item" v-if="userRole === 'admin'">
+          <router-link to="/Bookings/Index" class="nav-link" active-class="active">All Bookings</router-link>
+        </li>
 
         <!-- User Visible Links -->
 

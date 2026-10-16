@@ -10,6 +10,8 @@ import ContactView from '../views/ContactView.vue'
 import MapView from '../views/map/MapView.vue'
 import AdminDashboardView from '../views/dashboard/AdminDashboardView.vue'
 import BookingAddView from '../views/booking/BookingAddView.vue'
+import BookingIndexView from '../views/booking/BookingIndexView.vue'
+import SessionAddView from '../views/sessions/SessionAddView.vue'
 
 const routes = [
   {
@@ -66,6 +68,16 @@ const routes = [
     path: '/Bookings/Add',
     name: 'Add New Booking',
     component: BookingAddView
+  },
+  {
+    path: '/Bookings/Index',
+    name: 'View All Bookings',
+    component: BookingIndexView
+  },
+  {
+    path: '/Sessions/Add',
+    name: 'Add New Session',
+    component: SessionAddView
   }
 
 
