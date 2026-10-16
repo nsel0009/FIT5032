@@ -3,10 +3,22 @@
     <h2>List of All Sessions</h2>
 
     <section class="container-section">
-      <h3>Total Number of Sessions: {{ getTotalCount() }}</h3>
+      <h3>Total Number of Sessions: {{ totalCount }}</h3>
+      <br />
+        <router-link to="/Sessions/Add" class="nav-link" active-class="active">Add a Session</router-link>
+      <br />
+
+      <div class="w-full">
+        <FullCalendar :options="calendarOptions">
+        </FullCalendar>
+      </div>
+
+    </section>
+
+    <section class="container-section">
       <div class="w-full">
         <DataTable
-        :value="sessionsTableData"
+        :value="sessions"
         :paginator="true"
         :rows="10"
         v-model:filters="filters"
@@ -36,25 +48,60 @@
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
-
-import sessions from "../../assets/json/sessions.json"
-
-import { ref, onMounted } from "vue"
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
+import { ref, onMounted, reactive } from "vue"
 import axios from 'axios';
+import FullCalendar from "@fullcalendar/vue3";
+import themePlugin from "@fullcalendar/vue3/themes/monarch"; // YOUR THEME
+import dayGridPlugin from "@fullcalendar/vue3/daygrid";
+import interactionPlugin from "@fullcalendar/vue3/interaction";
+
+// stylesheets
+import '@fullcalendar/vue3/skeleton.css'; // ALWAYS NEED SKELETON
+import '@fullcalendar/vue3/themes/monarch/theme.css'; // YOUR THEME
+import '@fullcalendar/vue3/themes/monarch/palettes/purple.css'; // YOUR THEME'S PALETTE
+
+
+const sessionsCalendar = ref([])
+
+const calendarOptions = reactive({
+  plugins: [themePlugin, dayGridPlugin, interactionPlugin],
+  initialView: "dayGridMonth",
+  headerToolbar: {
+    left: 'prev',
+    center: 'title',
+    right: 'next'
+  },
+  weekends: true,
+  events: sessionsCalendar,
+});
+
+const getSessions = async () => {
+  try {
+    const querySnapshot = await getDocs(collection(db, 'sessions'));
+    sessionsCalendar.value = querySnapshot.docs.map(doc => ({
+      title: doc.data().topic,
+      date: doc.data().date
+    }));
+  } catch (error) {
+    console.error('Error fetching calendar events:', error);
+  }
+};
 
 const showMessage = ref(false)
 
-const sessionsTableData = ref(sessions);
+const sessions = ref([]);
 const filters = ref({
   'global': { value: null, matchMode: 'contains' }
 });
 
+const db = getFirestore();
 const totalCount = ref(null);
 const error = ref(null);
 
 const getTotalCount = async () => {
   try {
-    const response = await axios.get('');
+    const response = await axios.get('https://countsessions-rqvhgeks6a-uc.a.run.app');
     totalCount.value = response.data.count;
     error.value = null;
     return totalCount.value
@@ -68,17 +115,18 @@ onMounted(async () => {
 
   try {
 
-    // const querySnapshot = await getDocs(collection(db, 'ratings'));
+    const querySnapshot = await getDocs(collection(db, 'sessions'));
 
-    // ratings.value = querySnapshot.docs.map(doc => ({
-    //   id: doc.id,
-    //   ...doc.data()
-    // }));
+    sessions.value = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
 
     getTotalCount();
+    getSessions();
 
   } catch (error) {
-    console.error('Error fetching ratings:', error);
+    console.error('Error fetching sessions:', error);
   }
 
 });

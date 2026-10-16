@@ -1,5 +1,6 @@
 <template>
     <div class="container-block">
+      <h2>Ratings Page</h2>
       <div class="logo-image">
         <img alt="Vue logo" class="logo" src="../../assets/logo.svg" width="125" height="125" />
       </div>
@@ -7,7 +8,6 @@
         <h3>Total Number of Ratings: {{ totalCount }}</h3>
         <br />
         <div>
-          <h1>Ratings Page</h1>
           <p>Leave Reviews and Ratings Here</p>
           <br />
           <router-link to="/Ratings/Add" class="nav-link" active-class="active">Add a Rating</router-link>

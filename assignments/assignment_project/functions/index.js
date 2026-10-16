@@ -74,3 +74,16 @@ exports.countUsers = onRequest((req, res) => {
     }
   });
 });
+
+exports.countBookings = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const snapshot = await admin.firestore().collection("bookings").get();
+      const count = snapshot.size;
+      res.status(200).send({count});
+    } catch (error) {
+      logger.error("Error occurred while counting bookings:", error.message);
+      res.status(500).send("Internal Server Error");
+    }
+  });
+});

@@ -6,7 +6,7 @@
       <h3>Total Number of Users: {{ totalCount }}</h3>
       <div class="w-full">
         <DataTable
-          :value="usersTableData"
+          :value="users"
           :paginator="true"
           :rows="10"
           v-model:filters="filters"
@@ -37,18 +37,19 @@ import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
 import axios from 'axios';
-import users from "../../assets/json/users.json"
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 
 import { ref, onMounted } from "vue"
 
 const showMessage = ref(false)
 
-const usersTableData = ref(users);
+const users = ref([]);
 const filters = ref({
   'global': { value: null, matchMode: 'contains' }
 });
 
 
+const db = getFirestore();
 const totalCount = ref(null);
 const error = ref(null);
 
@@ -67,12 +68,12 @@ onMounted(async () => {
 
   try {
 
-    // const querySnapshot = await getDocs(collection(db, 'users'));
+    const querySnapshot = await getDocs(collection(db, 'users'));
 
-    // ratings.value = querySnapshot.docs.map(doc => ({
-    //   id: doc.id,
-    //   ...doc.data()
-    // }));
+    users.value = querySnapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
 
     getTotalCount();
 

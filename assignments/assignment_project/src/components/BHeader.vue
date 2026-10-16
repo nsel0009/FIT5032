@@ -20,6 +20,9 @@
         <template v-if="isLoggedIn">
         <!-- Admin Visible Links -->
         <li class="nav-item" v-if="userRole === 'admin'">
+          <router-link to="/Dashboard/Admin" class="nav-link" active-class="active">Admin Dashboard</router-link>
+        </li>
+        <li class="nav-item" v-if="userRole === 'admin'">
           <router-link to="/Users/Index" class="nav-link" active-class="active">All Users</router-link>
         </li>
         <li class="nav-item" v-if="userRole === 'admin'">
@@ -29,6 +32,9 @@
         <!-- User Visible Links -->
         <li class="nav-item" v-if="userRole === 'user'">
           <router-link to="/Ratings/Index" class="nav-link" active-class="active">All Ratings</router-link>
+        </li>
+        <li class="nav-item" v-if="userRole === 'user'">
+          <router-link to="/Bookings/Add" class="nav-link" active-class="active">Add Booking</router-link>
         </li>
 
         <!-- Log Out -->

@@ -8,6 +8,8 @@ import RatingIndexView from '../views/ratings/RatingIndexView.vue'
 import RatingAddView from '../views/ratings/RatingAddView.vue'
 import ContactView from '../views/ContactView.vue'
 import MapView from '../views/map/MapView.vue'
+import AdminDashboardView from '../views/dashboard/AdminDashboardView.vue'
+import BookingAddView from '../views/booking/BookingAddView.vue'
 
 const routes = [
   {
@@ -54,7 +56,18 @@ const routes = [
     path: '/Map',
     name: 'The Map',
     component: MapView
+  },
+  {
+    path: '/Dashboard/Admin',
+    name: 'The Admin Dashboard',
+    component: AdminDashboardView
+  },
+    {
+    path: '/Bookings/Add',
+    name: 'Add New Booking',
+    component: BookingAddView
   }
+
 
 ]
 
