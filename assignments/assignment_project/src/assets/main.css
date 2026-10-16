@@ -28,9 +28,10 @@ a,
   }
 
   #app {
-    display: block;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
     width: 100%;
     max-width: none;
-    padding: 0 2rem;
+    padding: 2 2rem;
   }
 }

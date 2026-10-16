@@ -24,6 +24,7 @@
                   @input="() => validateFirstname(false)"
                   v-model="formData.firstname" />
                   <div v-if="errors.firstname" class="text-danger">{{ errors.firstname }}</div>
+                  <div v-if="!errors.firstname" class="text-danger"><br /></div>
                 </td>
                 <td>
                   <input type="text" class="form-control" id="lastname"
@@ -31,6 +32,7 @@
                   @input="() => validateLastname(false)"
                   v-model="formData.lastname" />
                   <div v-if="errors.lastname" class="text-danger">{{ errors.lastname }}</div>
+                  <div v-if="!errors.lastname" class="text-danger"><br /></div>
                 </td>
               </tr>
               <tr>
@@ -48,6 +50,7 @@
                   @input="() => validateUsername(false)"
                   v-model="formData.username" />
                   <div v-if="errors.username" class="text-danger">{{ errors.username }}</div>
+                  <div v-if="!errors.username" class="text-danger"><br /></div>
                 </td>
                 <td>
                   <input type="email" class="form-control" id="email"
@@ -55,6 +58,7 @@
                   @input="() => validateEmail(false)"
                   v-model="formData.email" />
                   <div v-if="errors.email" class="text-danger">{{ errors.email }}</div>
+                  <div v-if="!errors.email" class="text-danger"><br /></div>
                 </td>
               </tr>
               <tr>
@@ -69,6 +73,7 @@
                   @input="() => validatePassword(false)"
                   v-model="formData.password" />
                   <div v-if="errors.password" class="text-danger">{{ errors.password }}</div>
+                  <div v-if="!errors.password" class="text-danger"><br /></div>
                 </td>
               </tr>
               <tr>
@@ -89,6 +94,7 @@
                     <option value="user">User</option>
                   </select>
                   <div v-if="errors.role" class="text-danger">{{ errors.role }}</div>
+                  <div v-if="!errors.role" class="text-danger"><br /></div>
                 </td>
                 <td>
                   <select class="form-select" id="status"
@@ -99,6 +105,7 @@
                     <option value="disabled">Disabled</option>
                   </select>
                   <div v-if="errors.status" class="text-danger">{{ errors.status }}</div>
+                  <div v-if="!errors.status" class="text-danger"><br /></div>
                 </td>
               </tr>
               <tr>
@@ -113,6 +120,8 @@
                   @input="() => validateReason(false)"
                   v-model="formData.reason"></textarea>
                   <div v-if="errors.reason" class="text-danger">{{ errors.reason }}</div>
+                  <div v-if="!errors.reason" class="text-danger"> </div>
+                  <div v-if="!errors.reason" class="text-danger"><br /></div>
                 </td>
               </tr>
               <tr>
@@ -212,12 +221,12 @@ const validateFirstname = (blur) => {
   const nameMaxLimit = 20;
   const nameMinLimit = 3;
 
-  if (formData.value.username.length > nameMaxLimit) {
-    if (blur) errors.value.username = `Username must be no more than ${nameMaxLimit} characters long.`;
-  } else if (formData.value.username.length < nameMinLimit) {
-    if (blur) errors.value.username = `Username must be at least ${nameMinLimit} characters long.`;
+  if (formData.value.firstname.length > nameMaxLimit) {
+    if (blur) errors.value.firstname = `First name must be no more than ${nameMaxLimit} characters long.`;
+  } else if (formData.value.firstname.length < nameMinLimit) {
+    if (blur) errors.value.firstname = `First name must be at least ${nameMinLimit} characters long.`;
   } else {
-    errors.value.username = null;
+    errors.value.firstname = null;
   }
 }
 
@@ -225,12 +234,12 @@ const validateLastname = (blur) => {
   const nameMaxLimit = 30;
   const nameMinLimit = 2;
 
-  if (formData.value.username.length > nameMaxLimit) {
-    if (blur) errors.value.username = `Username must be no more than ${nameMaxLimit} characters long.`;
-  } else if (formData.value.username.length < nameMinLimit) {
-    if (blur) errors.value.username = `Username must be at least ${nameMinLimit} characters long.`;
+  if (formData.value.lastname.length > nameMaxLimit) {
+    if (blur) errors.value.lastname = `Last name must be no more than ${nameMaxLimit} characters long.`;
+  } else if (formData.value.lastname.length < nameMinLimit) {
+    if (blur) errors.value.lastname = `Last name must be at least ${nameMinLimit} characters long.`;
   } else {
-    errors.value.username = null;
+    errors.value.lastname = null;
   }
 }
 

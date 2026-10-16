@@ -1,7 +1,7 @@
 <template>
     <div class="container-block">
       <div class="logo-image">
-        <img alt="Vue logo" class="logo" src="../../assets/logo.svg" width="125" height="125" />
+        <img alt="Vue logo" class="logo" src="../../assets/sustainenvironLogo.svg" width="125" height="125" />
       </div>
       <section class="container-section">
         <br />
@@ -52,6 +52,18 @@ const ratingsData = ref([]);
 const labels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 const data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+const chartData = ref({
+  labels: [],
+  datasets: [
+    {
+      data: []
+    }
+  ]
+})
+
+const chartOptions = ref({
+  responsive: true
+})
 
 onMounted(async () => {
 
@@ -74,18 +86,7 @@ onMounted(async () => {
 
   console.log('Ratings values:', labels, data);
 
-  } catch (error) {
-    console.error('Error fetching ratings:', error);
-  }
-
-});
-
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-
-
-const chartData = computed(() => {
-
-  return {
+  chartData.value = {
     labels: labels,
     datasets: [
       {
@@ -97,7 +98,14 @@ const chartData = computed(() => {
       }
     ]
   };
+
+  } catch (error) {
+    console.error('Error fetching ratings:', error);
+  }
+
 });
+
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 </script>
 

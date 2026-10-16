@@ -2,7 +2,7 @@
     <div class="container-block">
       <h2>Ratings Page</h2>
       <div class="logo-image">
-        <img alt="Vue logo" class="logo" src="../../assets/logo.svg" width="125" height="125" />
+        <img alt="Vue logo" class="logo" src="../../assets/sustainenvironLogo.svg" width="125" height="125" />
       </div>
       <section class="container-section">
         <h3>Total Number of Ratings: {{ totalCount }}</h3>

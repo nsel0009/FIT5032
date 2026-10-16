@@ -8,8 +8,20 @@
           <router-link to="/" class="nav-link" active-class="active" aria-current="page"
             >Home</router-link>
         </li>
-        <li class="nav-item">
-          <router-link to="/Contact" class="nav-link" active-class="active">Contact Us</router-link>
+        <br />
+
+        <template v-if="isLoggedIn">
+
+          <!-- Log Out -->
+         <p>({{ username }})</p>
+         <li class="nav-item">
+           <a class="nav-link" href="#" @click="handleLogout">Logout</a>
+         </li>
+         <br />
+
+        <!-- Admin Visible Links -->
+        <li class="nav-item" v-if="userRole === 'admin'">
+          <router-link to="/Dashboard/Admin" class="nav-link" active-class="active">Admin Dashboard</router-link>
         </li>
 
         <!-- Logged in Visible Links-->
@@ -17,11 +29,6 @@
           <router-link to="/Map" class="nav-link" active-class="active">The Map</router-link>
         </li>
 
-        <template v-if="isLoggedIn">
-        <!-- Admin Visible Links -->
-        <li class="nav-item" v-if="userRole === 'admin'">
-          <router-link to="/Dashboard/Admin" class="nav-link" active-class="active">Admin Dashboard</router-link>
-        </li>
         <li class="nav-item" v-if="userRole === 'admin'">
           <router-link to="/Users/Index" class="nav-link" active-class="active">All Users</router-link>
         </li>
@@ -30,18 +37,17 @@
         </li>
 
         <!-- User Visible Links -->
+
+        <li class="nav-item" v-if="userRole === 'user'">
+          <router-link to="/Contact" class="nav-link" active-class="active">Contact Us</router-link>
+        </li>
+
         <li class="nav-item" v-if="userRole === 'user'">
           <router-link to="/Ratings/Index" class="nav-link" active-class="active">All Ratings</router-link>
         </li>
         <li class="nav-item" v-if="userRole === 'user'">
           <router-link to="/Bookings/Add" class="nav-link" active-class="active">Add Booking</router-link>
         </li>
-
-        <!-- Log Out -->
-         <p>({{ username }})</p>
-         <li class="nav-item">
-           <a class="nav-link" href="#" @click="handleLogout">Logout</a>
-         </li>
 
         </template>
         <template v-else>
@@ -52,6 +58,7 @@
         <li class="nav-item">
           <router-link to="/Register" class="nav-link" active-class="active">Register</router-link>
         </li>
+        <br />
         </template>
       </ul>
     </header>

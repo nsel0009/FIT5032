@@ -34,7 +34,7 @@
     header {
       display: flex;
       place-items: center;
-      padding-right: calc(var(--section-gap) / 2);
+      padding-top: calc(var(--section-gap) / 10);
     }
 
     .logo {
