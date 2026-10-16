@@ -111,7 +111,7 @@ const validateSessionTopic = (blur) => {
 
 const validateRating = (blur) => {
   const ratingMaxLimit = 10;
-  const ratingMinLimit = 1;
+  const ratingMinLimit = 0;
   if (!formData.value.rating) {
     if (blur) errors.value.rating = "Rating is required";
   } else if (formData.value.rating < ratingMinLimit || formData.value.rating > ratingMaxLimit) {

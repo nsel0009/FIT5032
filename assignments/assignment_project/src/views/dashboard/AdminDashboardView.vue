@@ -7,7 +7,12 @@
         <br />
         <div>
           <h1>The Admin Dashboard</h1>
-          <p>Welcome to The Admin Dashboard. Here, you can view and manage all users and sessions, as well as access our Map feature</p>
+          <p>
+            Welcome to The Admin Dashboard. Here, you can view and manage all users and sessions, as well as access our Map feature. You can access the table view for Users, Sessions and Bookings through the three buttons below, as well as the map.
+            <br />
+            Further below is the Ratings Distribution Graph to watch over user satisfaction with SustainEnvion Education's Classes.
+            <br />
+          </p>
         </div>
 
         <table>
@@ -26,6 +31,13 @@
       </section>
       <section class="container-section">
         <h3>Ratings Distribution</h3>
+        <p>
+          The x-axis represents the ratings that users have given on a scale of 0 - 10.
+          <br />
+          The y-axis represents the number of users that have given that rating.
+          <br />
+          Consider the bell-curve that can be seen with the graph to help get an idea of how SustainEnviron Education is going.
+        </p>
         <br />
         <div>
           <Bar
@@ -128,9 +140,9 @@ header {
 
   table, td, tr {
     display: flex;
-    place-items: center;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    padding-right: calc(var(--section-gap) / 2);
   }
 
   .logo {

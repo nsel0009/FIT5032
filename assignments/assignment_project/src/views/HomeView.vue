@@ -7,7 +7,11 @@
         <br />
         <div>
           <h1>SustainEnviron Education</h1>
-          <p>Welcome to our website. We are a NFP dedicated to environmental education and climate literacy.</p>
+          <p>
+            Welcome to our website. We are a NFP dedicated to environmental education and climate literacy. If you want to learn more about how you can be more sustainable with your business, feel free to take part in one of our many online classes.
+            <br />
+            In order to take part in our classes, you will need to register your account, then book your spot in a class. Once you complete your class, feel free to leave a rating so that we can improve our services for everyone.
+          </p>
         </div>
       </section>
     </div>

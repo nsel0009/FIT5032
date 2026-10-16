@@ -3,7 +3,11 @@
     <h2>List of All Sessions</h2>
 
     <section class="container-section">
-      <h3>Total Number of Sessions: {{ totalCount }}</h3>
+
+      <p>
+        You can view all sessions both in a calendar or a table. Firstly, the calendar shows a visual represenation of the bookings. You can also add more sessions with the button below.
+      </p>
+
       <br />
         <router-link to="/Sessions/Add" class="nav-link" active-class="active">Add a Session</router-link>
       <br />
@@ -17,6 +21,13 @@
 
     <section class="container-section">
       <div class="w-full">
+
+        <p>
+          Here is the table representation for the sessions.
+        </p>
+        <br />
+
+        <h3>Total Number of Sessions: {{ totalCount }}</h3>
         <button @click="pdfExport">Export The Table As A PDF</button>
         <DataTable
         :value="sessions"
