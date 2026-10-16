@@ -5,6 +5,7 @@
     <section class="container-section">
       <h3>Total Number of Users: {{ totalCount }}</h3>
       <div class="w-full">
+        <button @click="pdfExport">Export The Table As A PDF</button>
         <DataTable
           :value="users"
           :paginator="true"
@@ -38,7 +39,8 @@ import Column from 'primevue/column';
 import InputText from 'primevue/inputtext';
 import axios from 'axios';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
-
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 import { ref, onMounted } from "vue"
 
 const showMessage = ref(false)
@@ -63,6 +65,30 @@ const getTotalCount = async () => {
     totalCount.value = null;
   }
 }
+
+const pdfExport = () => {
+  const doc = new jsPDF();
+
+  const columns = [
+    { title: "First Name", dataKey: "firstname" },
+    { title: "Last Name", dataKey: "lastname" },
+    { title: "Email", dataKey: "email" },
+    { title: "Status", dataKey: "status"}
+  ];
+  const rows = users.value;
+
+  doc.text("Users Data Table", 14, 15);
+
+  autoTable(doc, {
+    columns: columns,
+    body: rows,
+    startY: 20,
+    theme: 'striped',
+    styles: { fontSize: 10 }
+  });
+
+  doc.save('sustainenviron_users_table.pdf');
+};
 
 onMounted(async () => {
 

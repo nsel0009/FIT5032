@@ -17,6 +17,7 @@
 
     <section class="container-section">
       <div class="w-full">
+        <button @click="pdfExport">Export The Table As A PDF</button>
         <DataTable
         :value="sessions"
         :paginator="true"
@@ -55,6 +56,8 @@ import FullCalendar from "@fullcalendar/vue3";
 import themePlugin from "@fullcalendar/vue3/themes/monarch"; // YOUR THEME
 import dayGridPlugin from "@fullcalendar/vue3/daygrid";
 import interactionPlugin from "@fullcalendar/vue3/interaction";
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 // stylesheets
 import '@fullcalendar/vue3/skeleton.css'; // ALWAYS NEED SKELETON
@@ -110,6 +113,30 @@ const getTotalCount = async () => {
     totalCount.value = null;
   }
 }
+
+const pdfExport = () => {
+  const doc = new jsPDF();
+
+  const columns = [
+    { title: "Date", dataKey: "date" },
+    { title: "Topic", dataKey: "topic" },
+    { title: "Teacher", dataKey: "teacher" },
+    { title: "Number of People Enrolled", dataKey: "number_of_people_enrolled"}
+  ];
+  const rows = sessions.value;
+
+  doc.text("Sessions Data Table", 14, 15);
+
+  autoTable(doc, {
+    columns: columns,
+    body: rows,
+    startY: 20,
+    theme: 'striped',
+    styles: { fontSize: 10 }
+  });
+
+  doc.save('sustainenviron_sessions_table.pdf');
+};
 
 onMounted(async () => {
 
