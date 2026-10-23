@@ -44,7 +44,15 @@
             </span>
           </div>
 
-          <Column class="column-text" field="date" header ="Date" sortable/>
+          <div v-if="totalCount">
+            <p>
+              Testing this for v-if
+            </p>
+              <Column class="column-text" field="topic" header ="Topic" sortable/>
+            <v-else>
+              <Column class="column-text" field="date" header ="Date" sortable/>
+            </v-else>
+          </div>
           <Column class="column-text" field="topic" header ="Topic" sortable/>
           <Column class="column-text" field="teacher" header ="Teacher" sortable/>
           <Column class="column-text" field="number_of_people_enrolled" header ="Number of People Enrolled" sortable/>
