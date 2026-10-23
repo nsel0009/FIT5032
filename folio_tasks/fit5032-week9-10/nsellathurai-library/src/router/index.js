@@ -10,7 +10,7 @@ import CountBookAPI from '../views/CountBookAPI.vue'
 import GetBookCountView from '../views/GetBookCountView.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory("/folio_tasks/fit5032-week9-10/nsellathurai-library/"),
   routes: [
   {
     path: '/',
